@@ -149,25 +149,25 @@ local function checklisting(uid, gems, item, version, shiny, amount, username, p
 
     local price = gems / amount
 
-    if type.exclusiveLevel and price <= 10000 and item ~= "Banana" and item ~= "Coin" then
-        task.wait(3)
+    if type.huge and price <= 1000000 then
+        task.wait(3.05)
+	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
+        if boughtPet == true then
+            ping = true
+	end
+	processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)		
+    elseif type.exclusiveLevel and price <= 10000 and item ~= "Banana" and item ~= "Coin" then
+        task.wait(3.02)
 	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
         processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
-    elseif item == "Titanic Christmas Present" and price <= 25000 then
+    elseif item == "Huge Hunter" and price <= 25000 then
         task.wait(3.05)
 	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
 	processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
     elseif string.find(item, "Exclusive") and price <= 25000 then
         task.wait(3.05)
 	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
-	processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)
-    elseif type.huge and price <= 1000000 then
-        task.wait(3.05)
-	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
-        if boughtPet == true then
-            ping = true
-	end
-        processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping)  
+	processListingInfo(uid, gems, item, version, shiny, amount, username, boughtPet, ping) 
     elseif type.titanic and price <= 10000000 then
         task.wait(3.05)
 	local boughtPet, boughtMessage = purchase:InvokeServer(playerid, uid)
